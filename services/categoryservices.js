@@ -1,6 +1,7 @@
 const CategoryModel =require('../models/categorymodel')
 const slugify = require('slugify')
 const asyncHandler = require('express-async-handler')
+const ApiError =require('../utils/ApiErrors')
 
 // get method to res all categories in database
 exports.getCategories = asyncHandler(async (req,res) => {
@@ -22,11 +23,11 @@ res.status(201).json({data : category}) ;
 
 
 // get method to get category by id (specific category)
-exports.getcategory=asyncHandler( async (req , res) => {
+exports.getcategory=asyncHandler( async (req , res ,next) => {
 const { id } = req.params ;
 const category =await CategoryModel.findById(id);
 if(!category){
-res.status(404).json({msg: `No category By This Id ${id}`});    
+ return next(new ApiError(`No category By This Id ${id}`,404))
 }
 res.status(201).json({data:category}) ;
 })
@@ -42,7 +43,7 @@ const { id } =req.params ;
 const { name } =req.body ;
 const category =await CategoryModel.findByIdAndUpdate({_id:id},{name , slug:slugify(name) },{new:true})
 if(!category){
-    res.status(404).json({msg: `No category By This Id ${id}`});    
+    return next(new ApiError(`No category By This Id ${id}`,404))  
     }
     res.status(201).json({data:category})
 
@@ -54,7 +55,7 @@ exports.deletecategory=asyncHandler( async(req,res) => {
     const { id } =req.params ;
     const category =await CategoryModel.findByIdAndDelete(id);
     if(!category){
-        res.status(404).json({msg: `No category By This Id ${id}`});    
+        return next(new ApiError(`No category By This Id ${id}`,404))  
         }
         res.status(204).json()
     
