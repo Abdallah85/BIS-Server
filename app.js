@@ -26,6 +26,17 @@ app.use(morgan('dev'));
 
 app.use('/api/v1/categories',categoryRoute )
 
+//handel route erros 
+app.use('*',(req,res,next) => {
+//creat error and sending it to next MiddelWare
+const err =new Error(`Can't Find This Route ${req.originalUrl}`)
+next(err.message)
+})
+
+
+
+
+
 //MiddelWare for Handling Error
 app.use((err,req,res,next) => {
     res.status(400).json({err});
