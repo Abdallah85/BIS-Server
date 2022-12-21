@@ -3,6 +3,7 @@ const dotenv =require('dotenv')
 const morgan =require('morgan')
 const mongoose =require('mongoose')
 const categoryRoute =require('./routes/categoryRoute')
+const ApiErros =require('./utils/ApiErrors')
 dotenv.config({path:'config.env'})
 const app = express() ;
 //DataBase Connection
@@ -28,9 +29,7 @@ app.use('/api/v1/categories',categoryRoute )
 
 //handel route erros 
 app.use('*',(req,res,next) => {
-//creat error and sending it to next MiddelWare
-const err =new Error(`Can't Find This Route ${req.originalUrl}`)
-next(err.message)
+next(new ApiErros(`Can't Find This Route On ${req.originalUrl}`,400))
 })
 
 
@@ -39,7 +38,14 @@ next(err.message)
 
 //MiddelWare for Handling Error
 app.use((err,req,res,next) => {
-    res.status(400).json({err});
+    err.statusCode= err.statusCode ||500 ;
+    err.status=err.status||'error';
+    res.status(err.statusCode).json({
+        status:err.status , // for error status
+        error:err ,
+        message:err.message,
+        stack:err.stack // display place of error
+    });
 })
 
 
