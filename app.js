@@ -25,7 +25,7 @@ app.use(morgan('dev'));
 //router
 
 
-app.use('/api/v1/categories',categoryRoute )
+app.use('/api/categories',categoryRoute )
 
 //handel route erros 
 app.use('*',(req,res,next) => {
