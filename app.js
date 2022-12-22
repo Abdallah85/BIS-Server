@@ -1,11 +1,12 @@
 const express =require('express') ;
-const dotenv =require('dotenv');
-const morgan =require('morgan');
-const mongoose =require('mongoose');
-const categoryRoute =require('./routes/categoryRoute');
-const ApiErros =require('./utils/ApiErrors');
-dotenv.config({path:'config.env'});
+const dotenv =require('dotenv')
+const morgan =require('morgan')
+const mongoose =require('mongoose')
+const categoryRoute =require('./routes/categoryRoute')
+const ApiErros =require('./utils/ApiErrors')
+dotenv.config({path:'config.env'})
 const app = express() ;
+
 //DataBase Connection
 mongoose.connect(process.env.DB_URL).then((conn) => {
     console.log(`DataBase Is Connected: ${conn.Connection.host}`)
@@ -20,6 +21,7 @@ mongoose.connect(process.env.DB_URL).then((conn) => {
 
 app.use(express.json());
 app.use(morgan('dev'));
+
 
 //router
 
@@ -54,4 +56,3 @@ const PORT =process.env.port||8000 ;
 app.listen(PORT , () => {
     console.log("server done")
 })
-
