@@ -3,6 +3,7 @@ const dotenv =require('dotenv')
 const morgan =require('morgan')
 const mongoose =require('mongoose')
 const categoryRoute =require('./routes/categoryRoute')
+const productRoute =require('./routes/productRoute')
 const ApiErros =require('./utils/ApiErrors')
 dotenv.config({path:'config.env'})
 const app = express() ;
@@ -26,6 +27,7 @@ app.use(morgan('dev'));
 
 
 app.use('/api/categories',categoryRoute )
+app.use('/api/products',productRoute )
 
 //handel route erros 
 app.use('*',(req,res,next) => {

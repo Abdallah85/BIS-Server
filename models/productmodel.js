@@ -13,16 +13,16 @@ const productSchema = mongoose.Schema({
      minlength:[50,"this too short"]
     },
     price:{
-        type:number ,
+        type:Number ,
         required:[true,"price of product required"],
         max:[15,"too much"]
     },
     quantity:{
-    type :number ,
+    type :Number ,
     required:[true,"quantity of product required"]
     },
     sold:{
-    type:number,
+    type:Number,
     default:0
     },
     image:{
