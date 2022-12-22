@@ -15,7 +15,7 @@ const productSchema = mongoose.Schema({
     price:{
         type:Number ,
         required:[true,"price of product required"],
-        max:[15,"too much"]
+        max:[100000,"too much"]
     },
     quantity:{
     type :Number ,
@@ -27,7 +27,7 @@ const productSchema = mongoose.Schema({
     },
     image:{
         type:String,
-        required:[true ,"product image required"]
+       required:[true ,"product image required"]
     },
     category:{
         type:mongoose.Schema.ObjectId,

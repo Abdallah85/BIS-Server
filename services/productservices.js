@@ -25,3 +25,15 @@ exports.getProduct=asyncHandler( async (req , res ,next) => {
     }
     res.status(201).json({data:product}) ;
     })
+
+
+
+//method to create of product(only admin)
+exports.createProduct =asyncHandler(  async (req ,res) => {
+    const product =await ProductModel.create(req.body) ;
+    res.status(201).json({data : product}) ;
+        } )
+
+
+
+
