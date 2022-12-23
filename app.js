@@ -2,6 +2,7 @@ const express =require('express') ;
 const dotenv =require('dotenv')
 const morgan =require('morgan')
 const mongoose =require('mongoose')
+const ErrormiddelWare =require('./middlewares/errormiddelware')
 const categoryRoute =require('./routes/categoryRoute')
 const productRoute =require('./routes/productRoute')
 const ApiErros =require('./utils/ApiErrors')
@@ -39,16 +40,7 @@ next(new ApiErros(`Can't Find This Route On ${req.originalUrl}`,400))
 
 
 //MiddelWare for Handling Error
-app.use((err,req,res,next) => {
-    err.statusCode= err.statusCode ||500 ;
-    err.status=err.status||'error';
-    res.status(err.statusCode).json({
-        status:err.status , // for error status
-        error:err ,
-        message:err.message,
-        stack:err.stack // display place of error
-    });
-})
+app.use(ErrormiddelWare);
 
 
 
