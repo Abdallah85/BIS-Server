@@ -8,8 +8,8 @@ router
     .post(createProductValidation,createProduct);
 router
     .route('/:id')
-    .get(getProduct, getProductValidator)
-    .put(updateProduct,updateProductValidator)
-    .delete(deleteproduct,deleteProductValidator);
+    .get( getProductValidator,getProduct)
+    .put(updateProductValidator,updateProduct)
+    .delete(deleteProductValidator,deleteproduct);
 
     module.exports = router;
