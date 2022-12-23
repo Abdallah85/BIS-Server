@@ -34,6 +34,15 @@ exports.createProduct =asyncHandler(  async (req ,res) => {
     res.status(201).json({data : product}) ;
         } )
 
-
+//method to update product (only admin)
+exports.updateProduct= asyncHandler( async(req,res) => {
+    const { id } =req.params ;
+    const product =await ProductModel.findByIdAndUpdate({_id:id},req.body,{new:true})
+    if(!product){
+        return next(new ApiError(`No product By This Id ${id}`,404))  
+        }
+        res.status(201).json({data:product})
+    
+    })
 
 
