@@ -37,3 +37,9 @@ exports.createProductValidation = [
         .withMessage('invaled id formate'),
     validatorMiddelware,
 ];
+exports.getProductValidator = [
+    check('id')
+        .isMongoId()
+        .withMessage("Invaild product Id"),
+    validatorMiddelware
+];
