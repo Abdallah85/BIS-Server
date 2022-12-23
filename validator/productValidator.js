@@ -43,3 +43,9 @@ exports.getProductValidator = [
         .withMessage("Invaild product Id"),
     validatorMiddelware
 ];
+exports.updateProductValidator = [
+    check('id')
+        .isMongoId()
+        .withMessage("Invaild product Id"),
+    validatorMiddelware
+];
