@@ -1,4 +1,4 @@
-const ApiError = require('../utils/apiError');
+const ApiError = require('../utils/ApiErrors');
 
 const sendErrorForDev = (err, res) =>
   res.status(err.statusCode).json({
