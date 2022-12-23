@@ -26,8 +26,6 @@ app.use(morgan('dev'));
 const globalError = require('./middlewares/errorMiddleware');
 const mountRoutes = require('./routes');
 
-// const userRoute = require('./userRoute');
-const userService = require('./services/userService')
 
 
 mountRoutes(app);
