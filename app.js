@@ -3,7 +3,7 @@ const dotenv =require('dotenv')
 const morgan =require('morgan')
 const mongoose =require('mongoose')
 // const categoryRoute =require('./routes/categoryRoute')
-const ApiErros =require('./utils/ApiErrors')
+const ApiErrors =require('./utils/ApiErrors')
 dotenv.config({path:'config.env'})
 const app = express() ;
 
@@ -23,20 +23,17 @@ app.use(morgan('dev'));
 
 
 //router
-
 const globalError = require('./middlewares/errorMiddleware');
 const mountRoutes = require('./routes');
-// const categoryRoute = require('./categoryRoute');
-// const userRoute = require('./userRoute');
-// const authRoute = require('./routes/authRoute');
-// const wishlistRoute = require('./routes/wishlistRoute');
-// const addressRoute = require('./routes/addressRoute');
 
-// app.use('/api/categories',categoryRoute )
+// const userRoute = require('./userRoute');
+const userService = require('./services/userService')
+
+
 mountRoutes(app);
 //handel route erros 
 app.use('*',(req,res,next) => {
-next(new ApiErros(`Can't Find This Route On ${req.originalUrl}`,400))
+next(new ApiErrors(`Can't Find This Route On ${req.originalUrl}`,400))
 })
 
 app.use(globalError);
