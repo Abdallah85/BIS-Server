@@ -45,4 +45,15 @@ exports.updateProduct= asyncHandler( async(req,res) => {
     
     })
 
+    //method to delete product (only admin)
+exports.deleteproduct=asyncHandler( async(req,res) => {
+    const { id } =req.params ;
+    const product =await ProductModel.findByIdAndDelete(id);
+    if(!product){
+        return next(new ApiError(`No product By This Id ${id}`,404))  
+        }
+        res.status(204).json()
+    
+    })
+
 
