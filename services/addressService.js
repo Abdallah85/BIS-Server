@@ -54,3 +54,4 @@ exports.getLoggedUserAddresses = asyncHandler(async (req, res, next) => {
     data: user.addresses,
   });
 });
+

@@ -13,7 +13,8 @@ const categorySchema =new mongoose.Schema({
         type:String ,
         lowercase:true
     },
-},{timestamps :true}) ;
+},{timestamps :true}
+) ;
 
 
 //create model 

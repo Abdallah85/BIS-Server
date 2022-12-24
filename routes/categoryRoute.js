@@ -21,12 +21,27 @@ const router = express.Router();
 router
     .route('/')
     .get(getCategories)
-    .post(createCategoryvalidation,createCategory);
+    .post(
+        authService.protect,
+        authService.allowedTo('admin', 'manager'),
+        createCategoryvalidation,
+        createCategory
+    );
 router
     .route('/:id')
     .get(getcategoryvalidation,getcategory)
-    .put(updatecategoryvalidation,updatecategory)
-    .delete(deletecategoryvalidation,deletecategory);
+    .put(
+        authService.protect,
+        authService.allowedTo('admin' , 'manager'),
+        updatecategoryvalidation,
+        updatecategory
+        )
+    .delete(
+        authService.protect,
+        authService.allowedTo('admin'),
+        deletecategoryvalidation,
+        deletecategory
+        );
 
     module.exports = router;
 
