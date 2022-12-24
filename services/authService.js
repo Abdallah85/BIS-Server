@@ -11,7 +11,7 @@ const createToken = require('../utils/createToken');
 const User = require('../models/userModel');
 
 // @desc    Signup
-// @route   GET /api/v1/auth/signup
+// @route   GET /api/auth/signup
 // @access  Public
 exports.signup = asyncHandler(async (req, res, next) => {
 
@@ -29,7 +29,7 @@ exports.signup = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Login
-// @route   GET /api/v1/auth/login
+// @route   GET /api/auth/login
 // @access  Public
 exports.login = asyncHandler(async (req, res, next) => {
   // 1) check if password and email in the body (validation)
@@ -118,7 +118,7 @@ exports.allowedTo = (...roles) =>
   });
 
 // @desc    Forgot password
-// @route   POST /api/v1/auth/forgotPassword
+// @route   POST /api/auth/forgotPassword
 // @access  Public
 exports.forgotPassword = asyncHandler(async (req, res, next) => {
   // 1) Get user by email
@@ -166,7 +166,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Verify password reset code
-// @route   POST /api/v1/auth/verifyResetCode
+// @route   POST /api/auth/verifyResetCode
 // @access  Public
 exports.verifyPassResetCode = asyncHandler(async (req, res, next) => {
   // 1) Get user based on reset code
@@ -193,7 +193,7 @@ exports.verifyPassResetCode = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Reset password
-// @route   POST /api/v1/auth/resetPassword
+// @route   POST /api/auth/resetPassword
 // @access  Public
 exports.resetPassword = asyncHandler(async (req, res, next) => {
   // 1) Get user based on email

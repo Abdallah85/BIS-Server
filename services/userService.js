@@ -31,22 +31,22 @@ exports.resizeImage = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Get list of users
-// @route   GET /api/v1/users
+// @route   GET /api/users
 // @access  Private/Admin
 exports.getUsers = factory.getAll(User);
 
 // @desc    Get specific user by id
-// @route   GET /api/v1/users/:id
+// @route   GET /api/users/:id
 // @access  Private/Admin
 exports.getUser = factory.getOne(User);
 
 // @desc    Create user
-// @route   POST  /api/v1/users
+// @route   POST  /api/users
 // @access  Private/Admin
 exports.createUser = factory.createOne(User);
 
 // @desc    Update specific user
-// @route   PUT /api/v1/users/:id
+// @route   PUT /api/users/:id
 // @access  Private/Admin
 exports.updateUser = asyncHandler(async (req, res, next) => {
   const document = await User.findByIdAndUpdate(
@@ -89,12 +89,12 @@ exports.changeUserPassword = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Delete specific user
-// @route   DELETE /api/v1/users/:id
+// @route   DELETE /api/users/:id
 // @access  Private/Admin
 exports.deleteUser = factory.deleteOne(User);
 
 // @desc    Get Logged user data
-// @route   GET /api/v1/users/getMe
+// @route   GET /api/users/getMe
 // @access  Private/Protect
 exports.getLoggedUserData = asyncHandler(async (req, res, next) => {
   req.params.id = req.user._id;
@@ -102,7 +102,7 @@ exports.getLoggedUserData = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Update logged user password
-// @route   PUT /api/v1/users/updateMyPassword
+// @route   PUT /api/users/updateMyPassword
 // @access  Private/Protect
 exports.updateLoggedUserPassword = asyncHandler(async (req, res, next) => {
   // 1) Update user password based user payload (req.user._id)
@@ -124,7 +124,7 @@ exports.updateLoggedUserPassword = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Update logged user data (without password, role)
-// @route   PUT /api/v1/users/updateMe
+// @route   PUT /api/users/updateMe
 // @access  Private/Protect
 exports.updateLoggedUserData = asyncHandler(async (req, res, next) => {
   const updatedUser = await User.findByIdAndUpdate(
@@ -141,7 +141,7 @@ exports.updateLoggedUserData = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Deactivate logged user
-// @route   DELETE /api/v1/users/deleteMe
+// @route   DELETE /api/users/deleteMe
 // @access  Private/Protect
 exports.deleteLoggedUserData = asyncHandler(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user._id, { active: false });
