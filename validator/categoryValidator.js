@@ -4,6 +4,7 @@ exports.getcategoryvalidation=[
 check('id').isMongoId().withMessage("Invaild Category Id"),
 validatormiddelware 
 ]
+
 exports.createCategoryvalidation=[
 check('name').notEmpty().withMessage("Category requried").
 isLength({min:3}).withMessage("Too Short For Category Name").
