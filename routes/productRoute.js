@@ -1,7 +1,17 @@
 const express = require('express');
-const { getProductValidator, createProductValidation, updateProductValidator, deleteProductValidator } = require('../validator/productValidator')
-const { getProducts, getProduct, createProduct, updateProduct, deleteproduct } = require('../services/productservices');
+const { getProductValidator,
+     createProductValidation,
+      updateProductValidator,
+       deleteProductValidator 
+    } = require('../validator/productValidator')
+const { getProducts,
+     getProduct,
+      createProduct,
+       updateProduct,
+        deleteproduct 
+    } = require('../services/productservices');
 const router = express.Router();
+
 router
     .route('/')
     .get(getProducts)

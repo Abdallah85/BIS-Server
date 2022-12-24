@@ -27,13 +27,14 @@ app.use(morgan('dev'));
 //router
 const globalError = require('./middlewares/errorMiddleware');
 // const mountRoutes = require('./routes');
-// mountRoutes(app);
+// // mountRoutes(app);
 const categoryRoute = require('./routes/categoryRoute');
 const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 const wishlistRoute = require('./routes/wishlistRoute');
 const addressRoute = require('./routes/addressRoute');
 const productRoute =require('./routes/productRoute');
+
 
 app.use('/api/categories', categoryRoute);
 app.use('/api/users', userRoute);
@@ -60,6 +61,7 @@ const PORT =process.env.port||8000 ;
 const server=app.listen(PORT , () => {
     console.log("server done")
 })
+
 
 // to handle the errors from out side express by using on funcation in node to catch error like catch error from databse connection
 process.on("unhandledRejection",(err) => {
