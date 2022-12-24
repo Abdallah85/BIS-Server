@@ -2,7 +2,7 @@ const express = require('express');
 const {
   signupValidator,
   loginValidator,
-} = require('../utils/validators/authValidator');
+} = require('../validator/authValidator');
 
 const {
   signup,
