@@ -1,6 +1,7 @@
 const { check } = require('express-validator')
 const validatorMiddelware = require('../middlewares/validatormiddelware')
 const CategoryModel=require('../models/categorymodel')
+
 exports.createProductValidation = [
     check('title')
         .isLength({ min: 3 })

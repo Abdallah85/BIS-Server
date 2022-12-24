@@ -3,12 +3,8 @@ const app = express() ;
 const dotenv =require('dotenv')
 const morgan =require('morgan')
 const mongoose =require('mongoose')
-const ErrormiddelWare =require('./middlewares/errormiddelware')
-const categoryRoute =require('./routes/categoryRoute')
-const productRoute =require('./routes/productRoute')
-const ApiErros =require('./utils/ApiErrors')
+const ApiErrors =require('./utils/ApiErrors')
 dotenv.config({path:'config.env'})
-
 
 
 
@@ -23,31 +19,40 @@ mongoose.connect(process.env.DB_URL).then((conn) => {
 })
 
 
-
 //middelware
-
 app.use(express.json());
 app.use(morgan('dev'));
 
 
 //router
+const globalError = require('./middlewares/errorMiddleware');
+// const mountRoutes = require('./routes');
+// mountRoutes(app);
+const categoryRoute = require('./routes/categoryRoute');
+const userRoute = require('./routes/userRoute');
+const authRoute = require('./routes/authRoute');
+const wishlistRoute = require('./routes/wishlistRoute');
+const addressRoute = require('./routes/addressRoute');
+const productRoute =require('./routes/productRoute');
+
+app.use('/api/categories', categoryRoute);
+app.use('/api/users', userRoute);
+app.use('/api/auth', authRoute);
+app.use('/api/wishlist', wishlistRoute);
+app.use('/api/addresses', addressRoute);
+app.use('/api/products',productRoute );
 
 
-app.use('/api/categories',categoryRoute )
-app.use('/api/products',productRoute )
 
 //handel route erros 
 app.use('*',(req,res,next) => {
-next(new ApiErros(`Can't Find This Route On ${req.originalUrl}`,400))
+next(new ApiErrors(`Can't Find This Route On ${req.originalUrl}`,400))
 })
 
 
 
-
-
 //MiddelWare for Handling Error
-app.use(ErrormiddelWare);
-
+app.use(globalError);
 
 
 
