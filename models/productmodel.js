@@ -13,21 +13,21 @@ const productSchema = mongoose.Schema({
      minlength:[50,"this too short"]
     },
     price:{
-        type:number ,
+        type:Number ,
         required:[true,"price of product required"],
-        maxlength:[15,"too long"]
+        max:[100000,"too much"]
     },
     quantity:{
-    type :number ,
+    type :Number ,
     required:[true,"quantity of product required"]
     },
     sold:{
-    type:number,
+    type:Number,
     default:0
     },
     image:{
         type:String,
-        required:[true ,"product image required"]
+       required:[true ,"product image required"]
     },
     category:{
         type:mongoose.Schema.ObjectId,
