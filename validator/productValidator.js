@@ -1,5 +1,6 @@
 const { check } = require('express-validator')
 const validatorMiddelware = require('../middlewares/validatormiddelware')
+const CategoryModel=require('../models/categorymodel')
 exports.createProductValidation = [
     check('title')
         .isLength({ min: 3 })
@@ -30,11 +31,16 @@ exports.createProductValidation = [
     check('image')
         .notEmpty()
         .withMessage('image is required'),
-    check('category')
+        check('category')
         .notEmpty()
         .withMessage('product must be belonges to category')
         .isMongoId()
-        .withMessage('invaled id formate'),
+        .withMessage('invaled id formate')
+        .custom((categoryId)=>CategoryModel.findById(categoryId).then((category) => {
+           if(!category){
+            return Promise.reject(new Error(`no category for this Id : ${categoryId}`));
+           }
+        })),
     validatorMiddelware,
 ];
 exports.getProductValidator = [
