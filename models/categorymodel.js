@@ -1,7 +1,6 @@
 const mongoose =require('mongoose') ;
 
 // create Schema 
-
 const categorySchema =new mongoose.Schema({
     name:{
         type:String ,
