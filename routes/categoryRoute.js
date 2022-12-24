@@ -1,6 +1,22 @@
 const express = require('express');
-const { getcategoryvalidation, createCategoryvalidation, updatecategoryvalidation, deletecategoryvalidation } = require('../validator/categoryValidator')
-const { getCategories, getcategory, createCategory, updatecategory, deletecategory } = require('../services/categoryservices');
+
+const { 
+    getcategoryvalidation,
+    createCategoryvalidation,
+    updatecategoryvalidation,
+    deletecategoryvalidation 
+} = require('../validator/categoryValidator')
+
+const { 
+    getCategories,
+    getcategory, 
+    createCategory, 
+    updatecategory, 
+    deletecategory,
+} = require('../services/categoryservices');
+
+const authService = require('../services/authService');
+
 const router = express.Router();
 router
     .route('/')
