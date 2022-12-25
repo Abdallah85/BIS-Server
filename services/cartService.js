@@ -9,6 +9,28 @@ const calcTotalCartPrice = (cart) => {
       totalPrice += item.quantity * item.price;
     });
     cart.totalCartPrice = totalPrice;
-    cart.totalPriceAfterDiscount = undefined;
     return totalPrice;
   };
+  exports.addProductToCart = asyncHandler(async (req, res, next) => {
+    const { productId } = req.body;
+    const product = await Product.findById(productId);
+    let cart = await Cart.findOne({ user: req.user._id });
+    if (!cart) {
+        // create cart fot logged user with productId
+        cart = await Cart.create({
+          user: req.user._id,
+          cartItems: [{ product: productId,  price: product.price }],
+        });
+        const productIndex = cart.cartItems.findIndex(
+            (item) => item.product.toString() === productId 
+            );
+            if (productIndex > -1) {
+                const cartItem = cart.cartItems[productIndex];
+                cartItem.quantity += 1;
+                cart.cartItems[productIndex] = cartItem;
+            } else {
+                // product not exist in cart,  push product to cartItems array
+                cart.cartItems.push({ product: productId, color, price: product.price });
+              }
+            }
+        });
