@@ -34,7 +34,7 @@ const authRoute = require('./routes/authRoute');
 const wishlistRoute = require('./routes/wishlistRoute');
 const addressRoute = require('./routes/addressRoute');
 const productRoute =require('./routes/productRoute');
-
+const cartRoute =require('./routes/cartRoute');
 
 app.use('/api/categories', categoryRoute);
 app.use('/api/users', userRoute);
@@ -42,7 +42,7 @@ app.use('/api/auth', authRoute);
 app.use('/api/wishlist', wishlistRoute);
 app.use('/api/addresses', addressRoute);
 app.use('/api/products',productRoute );
-
+app.use('/api/cart',cartRoute );
 
 
 //handel route erros 
