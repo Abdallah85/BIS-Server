@@ -66,3 +66,23 @@ const calcTotalCartPrice = (cart) => {
           });
         }
         });
+        //remove cart item and calculate the total price after removing
+        exports.removeSpecificCartItem = asyncHandler(async (req, res, next) => {
+          const cart = await Cart.findOneAndUpdate(
+            { user: req.user._id },
+            {
+              $pull: { cartItems: { _id: req.params.itemId } },
+            },
+            { new: true }
+          );
+
+          calcTotalCartPrice(cart);
+          cart.save();
+        
+          res.status(200).json({
+            status: 'success',
+            numOfCartItems: cart.cartItems.length,
+            data: cart,
+          });
+        });
+        
