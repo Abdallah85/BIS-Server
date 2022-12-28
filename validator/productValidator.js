@@ -29,10 +29,7 @@ exports.createProductValidation = [
         .optional()
         .isNumeric()
         .withMessage('must be number'),
-    check('image')
-        .notEmpty()
-        .withMessage('image is required'),
-        check('category')
+    check('category')
         .notEmpty()
         .withMessage('product must be belonges to category')
         .isMongoId()

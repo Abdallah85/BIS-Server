@@ -8,8 +8,6 @@ dotenv.config({path:'config.env'})
 
 
 
-
-
 //DataBase Connection
 mongoose.connect(process.env.DB_URL).then((conn) => {
     console.log(`DataBase Is Connected: ${conn.Connection.host}`)
@@ -71,3 +69,4 @@ process.on("unhandledRejection",(err) => {
         process.exit(1);
     })
 })
+

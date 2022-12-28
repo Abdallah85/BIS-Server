@@ -12,8 +12,6 @@ const {
     createProduct,
     updateProduct,
     deleteproduct,
-    uploadProductImages,
-    resizeProductImages, 
     } = require('../services/productservices');
 
 const authService = require('../services/authService');
@@ -26,8 +24,6 @@ router
     .post(
         authService.protect,
         authService.allowedTo('admin', 'manager'),
-        uploadProductImages,
-        resizeProductImages,
         createProductValidation,
         createProduct
         );
@@ -37,8 +33,6 @@ router
     .put(
         authService.protect,
         authService.allowedTo('admin', 'manager'),
-        uploadProductImages,
-        resizeProductImages,
         updateProductValidator,
         updateProduct
         )
@@ -50,3 +44,4 @@ router
         );
 
     module.exports = router;
+    
