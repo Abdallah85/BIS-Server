@@ -41,22 +41,7 @@ exports.getProduct=asyncHandler( async (req , res ,next) => {
 // @access  Private
 //exports.createProduct = factory.createOne(ProductModel);
 exports.createProduct =asyncHandler(  async (req ,res) => {
-    const{title,describtion, price,quantity, sold, image,category} =req.body ;
-    
-    const result =await Cloudinary.uploader.upload(image,{
-        folder:products ,
-        width:300
-    })
-    const product =await ProductModel.create({
-title ,
-describtion,
-price ,
-quantity ,
-sold ,
-image:{
-    public_id:result.public_id ,
-    url:result.url
-},category}) ;
+    const product =await ProductModel.create(req.body) ;
     res.status(201).json({data : product}) ;
         } )
 

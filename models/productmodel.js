@@ -10,7 +10,7 @@ const productSchema = mongoose.Schema({
     describtion:{
      type:String ,
      required:[true,"describtion of product required"] ,
-     minlength:[50,"this too short"]
+     minlength:[30,"this too short"]
     },
     price:{
         type:Number ,
@@ -26,14 +26,9 @@ const productSchema = mongoose.Schema({
     default:0
     },
     image:{
-    public_id:{
-       type:String ,
-       required:[true,"must upload a photo"]
-    },
-    url:{
-        type:String ,
-        required:[true,"must put the "]
-    }
+    type:String ,
+    required:[true,"must put the image "]
+    
     },
     category:{
         type:mongoose.Schema.ObjectId,
