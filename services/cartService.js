@@ -47,12 +47,7 @@ const calcTotalCartPrice = (cart) => {
         //get logged user cart
         exports.getLoggedUserCart = asyncHandler(async (req, res, next) => {
           const cart = await Cart.findOne({ user: req.user._id });
-        
-          if (!cart) {
-            return next(
-              new ApiError(`There is no cart for this user id : ${req.user._id}`, 404)
-            );
-          }
+
           if (!cart) {
             return next(
               new ApiError(`There is no cart for this user id : ${req.user._id}`, 404)
@@ -67,7 +62,7 @@ const calcTotalCartPrice = (cart) => {
         }
         });
         //remove cart item and calculate the total price after removing
-        exports.removeSpecificCartItem = asyncHandler(async (req, res, next) => {
+        exports.removeCartItem = asyncHandler(async (req, res, next) => {
           const cart = await Cart.findOneAndUpdate(
             { user: req.user._id },
             {
@@ -85,4 +80,9 @@ const calcTotalCartPrice = (cart) => {
             data: cart,
           });
         });
-        
+        //clear user's cart
+        exports.clearCart = asyncHandler(async (req, res, next) => {
+          await Cart.findOneAndDelete({ user: req.user._id });
+          res.status(204).send();
+        });
+
