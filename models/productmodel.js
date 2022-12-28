@@ -27,7 +27,7 @@ const productSchema = mongoose.Schema({
     },
     image:{
         type:String,
-       required:[true ,"product image required"]
+       required:[true ,"product image required"] 
     },
     category:{
         type:mongoose.Schema.ObjectId,

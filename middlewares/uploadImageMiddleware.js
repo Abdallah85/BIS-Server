@@ -7,8 +7,10 @@ const multerOptions = () => {
 
   const multerFilter = function (req, file, cb) {
     if (file.mimetype.startsWith('image')) {
+   // To accept the file pass `true`, like so:
       cb(null, true);
     } else {
+      // pass an error if something goes wrong:
       cb(new ApiError('Only Images allowed', 400), false);
     }
   };

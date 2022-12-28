@@ -1,5 +1,5 @@
 const { check } = require('express-validator')
-const validatorMiddelware = require('../middlewares/validatormiddelware')
+const validatorMiddelware = require('../middlewares/validatorMiddleware')
 const CategoryModel=require('../models/categorymodel')
 
 exports.createProductValidation = [
