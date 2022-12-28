@@ -21,6 +21,7 @@ const calcTotalCartPrice = (cart) => {
           user: req.user._id,
           cartItems: [{ product: productId,  price: product.price }],
         });
+        //update product quantity and check if the product exist
         const productIndex = cart.cartItems.findIndex(
             (item) => item.product.toString() === productId 
             );
@@ -29,8 +30,17 @@ const calcTotalCartPrice = (cart) => {
                 cartItem.quantity += 1;
                 cart.cartItems[productIndex] = cartItem;
             } else {
-                // product not exist in cart,  push product to cartItems array
-                cart.cartItems.push({ product: productId, color, price: product.price });
+                cart.cartItems.push({ product: productId, price: product.price });
               }
             }
+            //calculat total cart price when add new product
+            calcTotalCartPrice(cart);
+            await cart.save();
+
+            res.status(200).json({
+              status: 'success',
+              message: 'Product added to cart successfully',
+              numOfCartItems: cart.cartItems.length,
+              data: cart,
+            });
         });
