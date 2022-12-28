@@ -7,11 +7,6 @@ const productSchema = mongoose.Schema({
        minlength:[3,"this too short"],
        maxlength:[100,"this too long"]
     },
-    slug: {
-        type: String,
-        required: true,
-        lowercase: true,
-    },
     describtion:{
      type:String ,
      required:[true,"describtion of product required"] ,
@@ -30,7 +25,16 @@ const productSchema = mongoose.Schema({
     type:Number,
     default:0
     },
-    colors: [String],
+    image:{
+    public_id:{
+       type:String ,
+       required:[true,"must upload a photo"]
+    },
+    url:{
+        type:String ,
+        required:[true,"must put the "]
+    }
+    },
     category:{
         type:mongoose.Schema.ObjectId,
         ref:'Category' ,
