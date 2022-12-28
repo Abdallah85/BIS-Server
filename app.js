@@ -8,8 +8,6 @@ dotenv.config({path:'config.env'})
 
 
 
-
-
 //DataBase Connection
 mongoose.connect(process.env.DB_URL).then((conn) => {
     console.log(`DataBase Is Connected: ${conn.Connection.host}`)
@@ -27,13 +25,14 @@ app.use(morgan('dev'));
 //router
 const globalError = require('./middlewares/errorMiddleware');
 // const mountRoutes = require('./routes');
-// mountRoutes(app);
+// // mountRoutes(app);
 const categoryRoute = require('./routes/categoryRoute');
 const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 const wishlistRoute = require('./routes/wishlistRoute');
 const addressRoute = require('./routes/addressRoute');
 const productRoute =require('./routes/productRoute');
+
 
 app.use('/api/categories', categoryRoute);
 app.use('/api/users', userRoute);
@@ -61,6 +60,7 @@ const server=app.listen(PORT , () => {
     console.log("server done")
 })
 
+
 // to handle the errors from out side express by using on funcation in node to catch error like catch error from databse connection
 process.on("unhandledRejection",(err) => {
     console.error(`unhandledRejection Error ${err.name}|${err.message}`) ;
@@ -69,3 +69,4 @@ process.on("unhandledRejection",(err) => {
         process.exit(1);
     })
 })
+

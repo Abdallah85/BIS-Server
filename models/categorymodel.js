@@ -1,7 +1,6 @@
 const mongoose =require('mongoose') ;
 
 // create Schema 
-
 const categorySchema =new mongoose.Schema({
     name:{
         type:String ,
@@ -14,10 +13,12 @@ const categorySchema =new mongoose.Schema({
         type:String ,
         lowercase:true
     },
-},{timestamps :true}) ;
+},{timestamps :true}
+) ;
 
 
 //create model 
 const CategoryModel =mongoose.model('Category',categorySchema)
 
 module.exports =CategoryModel ;
+
