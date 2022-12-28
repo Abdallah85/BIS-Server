@@ -34,11 +34,6 @@ const productSchema = mongoose.Schema({
         type: Number,
     },
     colors: [String],
-    
-    image:{
-        type:String,
-       required:[true ,"product image required"]
-    },
     category:{
         type:mongoose.Schema.ObjectId,
         ref:'Category' ,
