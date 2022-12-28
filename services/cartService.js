@@ -21,7 +21,7 @@ const calcTotalCartPrice = (cart) => {
           user: req.user._id,
           cartItems: [{ product: productId,  price: product.price }],
         });
-        //update product quantity and check if the product exist
+       } else{ //update product quantity and check if the product exist
         const productIndex = cart.cartItems.findIndex(
             (item) => item.product.toString() === productId 
             );
@@ -43,4 +43,26 @@ const calcTotalCartPrice = (cart) => {
               numOfCartItems: cart.cartItems.length,
               data: cart,
             });
+        });
+        //get logged user cart
+        exports.getLoggedUserCart = asyncHandler(async (req, res, next) => {
+          const cart = await Cart.findOne({ user: req.user._id });
+        
+          if (!cart) {
+            return next(
+              new ApiError(`There is no cart for this user id : ${req.user._id}`, 404)
+            );
+          }
+          if (!cart) {
+            return next(
+              new ApiError(`There is no cart for this user id : ${req.user._id}`, 404)
+            );
+          }
+        else{
+          res.status(200).json({
+            status: 'success',
+            numOfCartItems: cart.cartItems.length,
+            data: cart,
+          });
+        }
         });
