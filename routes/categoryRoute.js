@@ -23,7 +23,7 @@ router
     .get(getCategories)
     .post(
         authService.protect,
-        authService.allowedTo('admin', 'manager'),
+       authService.allowedTo('admin', 'manager'),
         createCategoryvalidation,
         createCategory
     );
@@ -31,8 +31,8 @@ router
     .route('/:id')
     .get(getcategoryvalidation,getcategory)
     .put(
-        authService.protect,
-        authService.allowedTo('admin' , 'manager'),
+         authService.protect,
+         authService.allowedTo('admin' , 'manager'),
         updatecategoryvalidation,
         updatecategory
         )
