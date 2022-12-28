@@ -7,7 +7,6 @@ const productSchema = mongoose.Schema({
        minlength:[3,"this too short"],
        maxlength:[100,"this too long"]
     },
-    
     describtion:{
      type:String ,
      required:[true,"describtion of product required"] ,
