@@ -12,10 +12,10 @@ const Cloudinary =require('../utils/cloudinary') ;
 // @access  Public
 //exports.getProducts = factory.getAll(ProductModel, 'Products');
 exports.getProducts = asyncHandler(async (req,res) => {
-    const page =req.query.page * 1 || 1 ;
-    const limit =req.query.limit * 1 || 5 ;
-    const skip =(page-1)*limit;
-    const products = await ProductModel.find({}).skip(skip).limit(limit) ;
+    // const page =req.query.page * 1 || 1 ;
+    // const limit =req.query.limit * 1 || 5 ;
+    // const skip =(page-1)*limit;
+    const products = await ProductModel.find({})  ;
     res.status(201).json({ result : products.length , data:products})  
     })
 

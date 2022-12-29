@@ -6,8 +6,9 @@ const mongoose =require('mongoose')
 const ApiErrors =require('./utils/ApiErrors')
 dotenv.config({path:'config.env'})
 
-
-
+const cors = require('cors')
+// const res = await axios.get('http://localhost:8000/', { params: { category: c} });
+app.use(cors());
 //DataBase Connection
 mongoose.connect(process.env.DB_URL).then((conn) => {
     console.log(`DataBase Is Connected: ${conn.Connection.host}`)
